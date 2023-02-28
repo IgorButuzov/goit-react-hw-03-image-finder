@@ -1,16 +1,28 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+import React from 'react';
+
+import Searchbar from "components/Searchbar/Searchbar";
+
+class App extends React.Component {
+
+
+  handleSubmit = e =>{
+    e.preventDefault();
+    
+  }
+
+  render() {
+    return (
+    <div>
+    <Searchbar
+    onSubmit={this.handleSubmit}/>
+     {/* <ImageGallery/>
+     <ImageGalleryItem/>
+     <Loader/>
+     <Button/>
+     <Modal/> */}
     </div>
   );
+    }
 };
+
+export default App;
