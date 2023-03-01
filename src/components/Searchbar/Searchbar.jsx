@@ -7,24 +7,27 @@ state = {
     inputData: '',
 }
 
-onInputChange = e => {
-    this.setState({inputData: e.target.value})
-    
-    
+onHandleSubmit = e => {
+  e.preventDefault();
+  if (this.state.inputData.trim() === '') {
+    alert('Insert image name');
+    return; 
+  }
+    this.props.onSubmit(this.state.inputData)
+    this.setState({inputData: ''})
 };
 
-onSearchClick = this.props.onSubmit
-
-// resetInput() {
-//     this.setState({inputData: ''})
-//   };
+onInputChange = e => {
+  this.setState({inputData: e.currentTarget.value})
+}
 
 render() {
+  console.log(this.state.inputData);
     const {inputData} = this.state;
     
     return (
-        <header className={css.searchbar} onSubmit={this.onSearchClick}>
-        <form className={css.form} >
+        <header className={css.searchbar}>
+        <form className={css.form} onSubmit={this.onHandleSubmit}>
           <button type="submit" className={css.button}>
             <span className={css.buttonLabel}>Search</span>
           </button>

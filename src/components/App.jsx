@@ -9,7 +9,7 @@ state = {
   BASE_URL: 'https://pixabay.com/api/',
   KEY: '32625337-c016256a0573a5e098b27062e',
   page: 1,
-  inputValue: 'horse',
+  inputValue: '',
   totalPages: undefined,
   imgs: [],
 }
@@ -17,18 +17,21 @@ state = {
 componentDidMount() {
   const { BASE_URL, KEY, inputValue, page } = this.state;
   fetch(
-    `${BASE_URL}?key=${KEY}&q=${inputValue}&image_type=photo&orientation=horisontal&safesearch=true&page=${page}&per_page=6`)
+    `${BASE_URL}?key=${KEY}&q=${inputValue}&image_type=photo&orientation=horisontal&safesearch=true&page=${page}&per_page=12`)
   .then(resp => resp.json())
-  .then(({hits}) => this.setState({imgs: hits}))
-  
+  .then(({hits}) => this.setState({imgs: hits}));
 }
-
-handleSubmit = e =>{
-    e.preventDefault();
-    this.setState({
-      inputValue: "dog",
-    });
-    console.log('qwe');
+componentDidUpdate(prevProps, prevState){
+  if (prevState.inputValue !== this.state.inputValue) {
+    const { BASE_URL, KEY, inputValue, page } = this.state;
+  fetch(
+    `${BASE_URL}?key=${KEY}&q=${inputValue}&image_type=photo&orientation=horisontal&safesearch=true&page=${page}&per_page=12`)
+  .then(resp => resp.json())
+  .then(({hits}) => this.setState({imgs: hits}));
+  }
+}
+handleSubmit = inputValue =>{
+    this.setState({inputValue})
   }
   
 render() {
