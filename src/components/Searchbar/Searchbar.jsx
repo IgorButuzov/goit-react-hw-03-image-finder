@@ -10,12 +10,18 @@ state = {
 onInputChange = e => {
     this.setState({inputData: e.target.value})
     
+    
 };
 
 onSearchClick = this.props.onSubmit
 
+// resetInput() {
+//     this.setState({inputData: ''})
+//   };
+
 render() {
-    console.log(this.state.inputData);
+    const {inputData} = this.state;
+    
     return (
         <header className={css.searchbar} onSubmit={this.onSearchClick}>
         <form className={css.form} >
@@ -29,7 +35,7 @@ render() {
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            value={this.inputData}
+            value={inputData}
             onChange={this.onInputChange}
           />
         </form>
