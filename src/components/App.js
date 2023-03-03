@@ -40,7 +40,8 @@ class App extends Component {
         const response = fetchImages(searchData, page);
         response.then(foundData => {
           foundData.data.hits.length === 0
-            ? toast.error('Better luck next time!')
+            ? toast.error(`${foundData.data.hits.length} images founded. 
+            Try to searsch another image!`)
             : foundData.data.hits.forEach(
                 ({ id, webformatURL, largeImageURL }) => {
                   !images.some(image => image.id === id) &&

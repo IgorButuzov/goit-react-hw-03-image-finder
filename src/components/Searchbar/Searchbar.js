@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import s from 'components/Searchbar/Searchbar.module.css';
+import styles from 'components/Searchbar/Searchbar.module.css';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,7 +22,7 @@ class Searchbar extends Component {
     e.preventDefault();
 
     if (this.state.searchData.trim() === '') {
-      toast('Введите запрос');
+      toast('Enter a request');
       return;
     }
     this.props.onSubmit(this.state.searchData);
@@ -33,14 +33,14 @@ class Searchbar extends Component {
     const { handleChange, handleSubmit } = this;
 
     return (
-      <header className={s.searchbar}>
-        <form className={s.form} onSubmit={handleSubmit}>
-          <button type="submit" className={s.button}>
-            <span className={s.button_label}>Search</span>
+      <header className={styles.searchbar}>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <button type="submit" className={styles.button}>
+            <span className={styles.button_label}>Search</span>
           </button>
 
           <input
-            className={s.input}
+            className={styles.input}
             type="text"
             autoComplete="off"
             autoFocus

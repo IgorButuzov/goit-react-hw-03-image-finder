@@ -1,8 +1,8 @@
 .Button {
   margin: 0 auto;
-  padding: 8px 16px;
+  padding: 10px;
   border-radius: 6px;
-  background-color: #3f51b5;
+  background-color: #539b95;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
   display: inline-block;
@@ -22,5 +22,8 @@
 
 .Button:hover,
 .Button:focus {
-  background-color: #303f9f;
+  box-shadow: 0px 3px 1px -2px #539b95,
+    0px 2px 2px 0px #539b95, 0px 1px 5px 0px #539b95;
+  background-color: #fff;
+  color: #539b95;
 }
