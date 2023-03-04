@@ -20,8 +20,14 @@ class App extends Component {
     showModal: false,
     largeImage: '',
   };
-
+  
   onSubmit = searchData => {
+
+    if (this.state.searchData === searchData.trim()) {
+      this.searchDataRepeat();
+      return;
+    }
+
     this.setState({
       searchData,
       page: 1,
@@ -29,12 +35,15 @@ class App extends Component {
     });
   };
   
+  searchDataRepeat = () => {
+    return toast.info('You are already find this images!');
+  };
+
   componentDidUpdate(_, prevState) {
     const prevPage = prevState.page;
-    const prevSearchData = prevState.searchData;
     const { searchData, page, images } = this.state;
     
-    if (prevPage !== page || prevSearchData !== searchData) {
+    if (prevPage !== page) {
       try {
         this.setState({ isLoading: true });
         const response = fetchImages(searchData, page);
@@ -89,7 +98,7 @@ class App extends Component {
         )}
         {isLoading && <ImageLoader />}
         {images.length >= 12 && <Button nextPage={nextPage} />}
-        <ToastContainer autoClose={2000} />
+        <ToastContainer autoClose={2500} />
       </div>
     );
   }

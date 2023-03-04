@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 class Searchbar extends Component {
   state = {
-    searchData: '',
+    inputData: '',
   };
 
   static propTypes = {
@@ -15,18 +15,18 @@ class Searchbar extends Component {
 
   handleChange = e => {
     const { value } = e.currentTarget;
-    this.setState({ searchData: value.toLowerCase() });
+    this.setState({ inputData: value.toLowerCase() });
   };
 
   handleSubmit = e => {
     e.preventDefault();
 
-    if (this.state.searchData.trim() === '') {
+    if (this.state.inputData.trim() === '') {
       toast('Enter a request');
       return;
     }
-    this.props.onSubmit(this.state.searchData);
-    this.setState({ searchData: '' });
+    this.props.onSubmit(this.state.inputData);
+    this.setState({ inputData: '' });
   };
 
   render() {
@@ -45,7 +45,7 @@ class Searchbar extends Component {
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            value={this.state.searchData}
+            value={this.state.inputData}
             onChange={handleChange}
           />
         </form>
